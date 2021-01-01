@@ -29,11 +29,24 @@ const merge = (left: number[], right: number[]): number[] => {
   }
 
   // add the leftover elements to the back (only one of these statements will execute), we know they're already sorted
-  if (leftPointer < left.length) {
-    result = result.concat(...left.slice(leftPointer));
+
+  /* This is a straightforward TS way to do it but it probably is less performant */
+  // if (leftPointer < left.length) {
+  //   result = result.concat(...left.slice(leftPointer));
+  // }
+  // if (rightPointer < right.length) {
+  //   result = result.concat(...right.slice(rightPointer));
+  // }
+
+  /* More classical way */
+  while (leftPointer < left.length) {
+    result.push(left[leftPointer]);
+    leftPointer++;
   }
-  if (rightPointer < right.length) {
-    result = result.concat(...right.slice(rightPointer));
+
+  while (rightPointer < right.length) {
+    result.push(right[rightPointer]);
+    rightPointer++;
   }
 
   return result;
