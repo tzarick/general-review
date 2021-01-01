@@ -5,8 +5,6 @@ export const sort = (inputArr: number[]): number[] => {
 
   let left = inputArr.slice(0, Math.floor(inputArr.length / 2));
   let right = inputArr.slice(Math.floor(inputArr.length / 2), inputArr.length);
-  // console.log(`left: ${left}`);
-  // console.log(`right: ${right}`);
 
   left = sort(left);
   right = sort(right);
@@ -17,22 +15,25 @@ export const sort = (inputArr: number[]): number[] => {
 const merge = (left: number[], right: number[]): number[] => {
   let result = [];
 
-  // let leftPointer = 0, rightPointer = 0;
-  while (left.length && right.length) {
-    if (left[0] <= right[0]) {
-      result.push(left[0]);
-      left.shift();
+  /* "2 Finger" Method */
+  let leftPointer = 0,
+    rightPointer = 0;
+  while (leftPointer < left.length && rightPointer < right.length) {
+    if (left[leftPointer] <= right[rightPointer]) {
+      result.push(left[leftPointer]);
+      leftPointer++;
     } else {
-      result.push(right[0]);
-      right.shift();
+      result.push(right[rightPointer]);
+      rightPointer++;
     }
   }
 
-  if (left.length) {
-    result = result.concat(...left);
+  // add the leftover elements to the back (only one of these statements will execute), we know they're already sorted
+  if (leftPointer < left.length) {
+    result = result.concat(...left.slice(leftPointer));
   }
-  if (right.length) {
-    result = result.concat(...right);
+  if (rightPointer < right.length) {
+    result = result.concat(...right.slice(rightPointer));
   }
 
   return result;
