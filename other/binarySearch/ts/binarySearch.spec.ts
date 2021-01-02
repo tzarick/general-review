@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { describe } from 'mocha';
+import { searchRecursive } from './binarySearch';
 import { search } from './binarySearch';
 
 const testCases = [
@@ -18,7 +19,7 @@ const testCases = [
 ];
 
 describe('Solution Test Cases - Binary Search', () => {
-  describe('Tests', () => {
+  describe('Iterative Tests', () => {
     for (let i = 0; i < testCases.length; i++) {
       const { input, expected } = testCases[i];
 
@@ -26,6 +27,23 @@ describe('Solution Test Cases - Binary Search', () => {
         expect(search(input[0] as number[], input[1] as number)).to.equal(
           expected
         );
+      });
+    }
+  });
+  describe('Recursive Tests', () => {
+    for (let i = 0; i < testCases.length; i++) {
+      const { input, expected } = testCases[i];
+
+      it(`Case ${i + 1}`, () => {
+        let arr = input[0] as number[];
+        expect(
+          searchRecursive(
+            input[0] as number[],
+            input[1] as number,
+            0,
+            arr.length
+          )
+        ).to.equal(expected);
       });
     }
   });
