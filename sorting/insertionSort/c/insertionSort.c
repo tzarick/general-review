@@ -1,25 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void mySwap(int arr[], int idx1, int idx2)
-{
-  int temp = arr[idx1];
-  arr[idx1] = arr[idx2];
-  arr[idx2] = temp;
-}
-
-void sort(int arr[], int size)
-{
-  for (int i = 1; i < size; i++)
-  {
-    int j = i;
-    while (j > 0 && arr[j] < arr[j - 1])
-    {
-      mySwap(arr, j, j - 1);
-      j--;
-    }
-  }
-}
+void sort(int arr[], int size);
+void mySwap(int arr[], int idx1, int idx2);
+void printArray(int arr[], int size);
 
 int main()
 {
@@ -35,4 +19,32 @@ int main()
   }
 
   return 0;
+}
+
+void sort(int arr[], int size)
+{
+  for (int i = 1; i < size; i++)
+  {
+    int j = i;
+    while (j > 0 && arr[j] < arr[j - 1])
+    {
+      mySwap(arr, j, j - 1);
+      j--;
+    }
+  }
+}
+
+void mySwap(int arr[], int idx1, int idx2)
+{
+  int temp = arr[idx1];
+  arr[idx1] = arr[idx2];
+  arr[idx2] = temp;
+}
+
+void printArray(int arr[], int size)
+{
+  for (int i = 0; i < size; i++)
+  {
+    printf("%d\n", arr[i]);
+  }
 }
