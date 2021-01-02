@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -c -r ts-node/register sorting/**/*.spec.ts"
+    "test": "mocha -c -r ts-node/register **/*.spec.ts"
   },
   "keywords": [],
   "author": "",
